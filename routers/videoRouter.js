@@ -3,9 +3,10 @@ import routes from "../routes";
 import {
   postUpload,
   videoDetail,
-  editVideo,
+  getEditVideo,
   deleteVideo,
-  getUpload
+  getUpload,
+  postEditVideo
 } from "../controllers/videoController";
 import { uploadMulter } from "../middleware";
 
@@ -17,5 +18,8 @@ videoRouter.get(routes.upload, getUpload);
 videoRouter.post(routes.upload, uploadMulter, postUpload);
 
 videoRouter.get(routes.videoDetail(), videoDetail);
-videoRouter.get(routes.editVideo, editVideo);
-videoRouter.get(routes.deleteVideo, deleteVideo);
+
+videoRouter.get(routes.editVideo(), getEditVideo);
+videoRouter.post(routes.editVideo(), postEditVideo);
+
+videoRouter.get(routes.deleteVideo(), deleteVideo);
