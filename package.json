@@ -13,6 +13,7 @@
     "autoprefixer": "^9.7.5",
     "babel-loader": "^8.1.0",
     "body-parser": "^1.19.0",
+    "connect-mongo": "^3.2.0",
     "cookie-parser": "^1.4.4",
     "cross-env": "^7.0.2",
     "css-loader": "^3.4.2",
@@ -20,6 +21,7 @@
     "eslint-config-prettier": "^6.10.1",
     "eslint-plugin-prettier": "^3.1.2",
     "express": "^4.17.1",
+    "express-session": "^1.17.0",
     "extract-text-webpack-plugin": "^4.0.0-beta.0",
     "helmet": "^3.21.3",
     "mongoose": "^5.9.5",
@@ -27,6 +29,8 @@
     "multer": "^1.4.2",
     "node-sass": "^4.13.1",
     "passport": "^0.4.1",
+    "passport-github": "^1.1.0",
+    "passport-google-oauth": "^2.0.0",
     "passport-local": "^1.0.0",
     "passport-local-mongoose": "^6.0.1",
     "postcss-loader": "^3.0.0",
@@ -36,7 +40,7 @@
     "webpack-cli": "^3.3.11"
   },
   "scripts": {
-    "dev:server": "nodemon --exec babel-node init.js --delay 1 --ignore 'scss'",
+    "dev:server": "nodemon --exec babel-node init.js --delay 2 --ignore '.scss' --ignore 'static' ",
     "dev:assets": "cross-env WEBPACK__ENV=development webpack -w",
     "build:assets": "cross-env WEBPACK__ENV=production webpack"
   },
