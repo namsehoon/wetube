@@ -30,6 +30,10 @@ export const postJoin = async (req, res, next) => {
 
 export const githubLogin = passport.authenticate("github");
 
+export const googleLogin = passport.authenticate("google", {
+  scope: "https://www.googleapis.com/auth/plus.login"
+});
+
 export const getLogin = (req, res) => {
   res.render("login", { pagetitle: "login" });
 };
@@ -39,9 +43,31 @@ export const postLogin = passport.authenticate("local", {
   successRedirect: routes.home
 });
 
+export const googleGogo = async (_, __, profile, cb) => {
+  const {
+    _json: { id, name, email }
+  } = profile;
+  try {
+    const user = await User.findOne({ email });
+    if (user) {
+      user.googleId = id;
+      user.save();
+      return cb(null, user);
+    }
+    const newUser = await User.create({
+      email,
+      name,
+      googleId: id
+    });
+    return cb(null, newUser);
+  } catch (error) {
+    return cb(error);
+  }
+};
+
 export const githubgogo = async (_, __, profile, cb) => {
   const {
-    _json: { id, avatar_url, name, email }
+    _json: { id, avatarUrl, name, email }
   } = profile;
   try {
     const user = await User.findOne({ email });
@@ -53,8 +79,7 @@ export const githubgogo = async (_, __, profile, cb) => {
     const newUser = await User.create({
       email,
       name,
-      githubId: id,
-      avatarUrl: avatar_url
+      githubId: id
     });
     return cb(null, newUser);
   } catch (error) {
@@ -63,6 +88,10 @@ export const githubgogo = async (_, __, profile, cb) => {
 };
 
 export const githubRehome = (req, res) => {
+  res.redirect(routes.home);
+};
+
+export const googleRehome = (req, res) => {
   res.redirect(routes.home);
 };
 
@@ -83,11 +112,11 @@ export const userDetail = async (req, res) => {
     const user = User.findById(id);
     res.render("userDetail", { pagetitle: "userDetail", user });
   } catch (error) {
-    res.redirect(route.home);
+    res.redirect(routes.home);
   }
 };
 
-export const getEditProfile = (req, res) =>
+export const editProfile = (req, res) =>
   res.render("editProfile", { pagetitle: "editProfile" });
 
 export const changePassword = (req, res) =>

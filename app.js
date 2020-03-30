@@ -7,7 +7,7 @@ import mongoStore from "connect-mongo";
 import mongoose from "mongoose";
 import session from "express-session";
 import bodyParser from "body-parser";
-import globlRouter from "./routers/globlRouter";
+import globlRouter from "./routers/globalRouter";
 import userRouter from "./routers/userRouter";
 import videoRouter from "./routers/videoRouter";
 import routes from "./routes";

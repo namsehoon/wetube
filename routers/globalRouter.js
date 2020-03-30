@@ -12,7 +12,12 @@ import {
 } from "../controllers/userController";
 import { onlyPublic } from "../middleware";
 import { onlyPrivate } from "../middleware";
-import { githubLogin, githubRehome } from "../controllers/userController";
+import {
+  githubLogin,
+  githubRehome,
+  googleLogin,
+  googleRehome
+} from "../controllers/userController";
 
 const globalRouter = express.Router();
 
@@ -34,6 +39,14 @@ globalRouter.get(
   routes.gitCallback,
   passport.authenticate("github", { failureRedirect: "/login" }),
   githubRehome
+);
+
+globalRouter.get(routes.google, googleLogin);
+
+globalRouter.get(
+  routes.googleCallback,
+  passport.authenticate("google", { failureRedirect: "/login" }),
+  googleRehome
 );
 
 globalRouter.get(routes.me, getMe);
