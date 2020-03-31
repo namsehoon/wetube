@@ -2,6 +2,7 @@ import multer from "multer";
 import routes from "./routes";
 
 const uploadMiddle = multer({ dest: "uploads/videos/" });
+const avatarMiddle = multer({ dest: "uploads/avatars/" });
 
 export const localMiddleware = (req, res, next) => {
   res.locals.siteName = "WeTube";
@@ -27,3 +28,4 @@ export const onlyPrivate = (req, res, next) => {
 };
 
 export const uploadMulter = uploadMiddle.single("videoFile");
+export const avatarMulter = avatarMiddle.single("avatar");
