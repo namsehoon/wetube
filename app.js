@@ -2,21 +2,21 @@ import express from "express";
 import morgan from "morgan";
 import helmet from "helmet";
 import cookieParser from "cookie-parser";
+import bodyParser from "body-parser";
 import passport from "passport";
-import mongoStore from "connect-mongo";
 import mongoose from "mongoose";
 import session from "express-session";
-import bodyParser from "body-parser";
-import globlRouter from "./routers/globalRouter";
+import MongoStore from "connect-mongo";
+import { localMiddleware } from "./middleware";
+import routes from "./routes";
 import userRouter from "./routers/userRouter";
 import videoRouter from "./routers/videoRouter";
-import routes from "./routes";
-import { localMiddleware } from "./middleware";
+import globlRouter from "./routers/globalRouter";
 
-const app = express();
 import "./passport";
+const app = express();
 
-const CokieStore = mongoStore(session);
+const CokieStore = MongoStore(session);
 
 app.use(helmet());
 app.set("view engine", "pug");

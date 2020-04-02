@@ -21,8 +21,8 @@ const DELETE_VIDEO = "/:id/delete";
 
 const GITHUB = "/auth/github";
 const GITHUBCALLBACK = "/auth/github/callback";
-const GOOGLECALLBACK = "/auth/google/callback";
 const GOOGLE = "/auth/google";
+const GOOGLECALLBACK = "/auth/google/callback";
 
 const routes = {
   home: HOME,
