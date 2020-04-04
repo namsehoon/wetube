@@ -1,10 +1,10 @@
 const path = require("path");
 
 const autoprefixer = require("autoprefixer");
-const extractCSS = require("extract-text-webpack-plugin");
+const ExtractCSS = require("extract-text-webpack-plugin");
 
 const MODE = process.env.WEBPACK__ENV;
-const ENTRY_FILE = path.resolve(__dirname, "assets", "js", "main");
+const ENTRY_FILE = path.resolve(__dirname, "assets", "js", "main.js");
 const OUTPUT_DIR = path.join(__dirname, "static");
 
 const config = {
@@ -22,7 +22,7 @@ const config = {
       },
       {
         test: /\.(scss)$/,
-        use: extractCSS.extract([
+        use: ExtractCSS.extract([
           {
             loader: "css-loader"
           },
@@ -45,7 +45,7 @@ const config = {
     path: OUTPUT_DIR,
     filename: "[name].js"
   },
-  plugins: [new extractCSS("style.css")]
+  plugins: [new ExtractCSS("style.css")]
 };
 
 module.exports = config;
