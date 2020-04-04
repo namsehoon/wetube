@@ -16,36 +16,36 @@ const config = {
         test: /\.(js)$/,
         use: [
           {
-            loader: "babel-loader"
-          }
-        ]
+            loader: "babel-loader",
+          },
+        ],
       },
       {
         test: /\.(scss)$/,
         use: ExtractCSS.extract([
           {
-            loader: "css-loader"
+            loader: "css-loader",
           },
           {
             loader: "postcss-loader",
             options: {
               plugin() {
                 return [autoprefixer({ browsers: "cover 99.5%" })];
-              }
-            }
+              },
+            },
           },
           {
-            loader: "sass-loader"
-          }
-        ])
-      }
-    ]
+            loader: "sass-loader",
+          },
+        ]),
+      },
+    ],
   },
   output: {
     path: OUTPUT_DIR,
-    filename: "[name].js"
+    filename: "[name].js",
   },
-  plugins: [new ExtractCSS("style.css")]
+  plugins: [new ExtractCSS("style.css")],
 };
 
 module.exports = config;

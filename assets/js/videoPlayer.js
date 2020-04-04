@@ -11,7 +11,7 @@ function handlePlayClick() {
 }
 
 function init() {
-  playBtn.addEventListener("click,", handlePlayClick);
+  playBtn.addEventListener("click", handlePlayClick);
 }
 
 if (videoContainer) {
