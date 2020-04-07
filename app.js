@@ -12,6 +12,7 @@ import routes from "./routes";
 import userRouter from "./routers/userRouter";
 import videoRouter from "./routers/videoRouter";
 import globlRouter from "./routers/globalRouter";
+import apiRouter from "./routers/apiRouter";
 
 import "./passport";
 const app = express();
@@ -31,7 +32,7 @@ app.use(
     secret: process.env.session__SECRET,
     resave: true,
     saveUninitialized: false,
-    store: new CokieStore({ mongooseConnection: mongoose.connection })
+    store: new CokieStore({ mongooseConnection: mongoose.connection }),
   })
 );
 
@@ -43,5 +44,6 @@ app.use(localMiddleware);
 app.use(routes.home, globlRouter);
 app.use(routes.user, userRouter);
 app.use(routes.videos, videoRouter);
+app.use(routes.api, apiRouter);
 
 export default app;
